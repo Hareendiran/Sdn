@@ -1,6 +1,10 @@
-name: Build, Integration, and Testing Demo
+name: CI Pipeline
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,7 +19,9 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
   integration:
     runs-on: ubuntu-latest
@@ -30,10 +36,12 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run ML Model
-        run: python ml.model.py   # replace with your actual script
+        run: python Sdn/ml.model.py
 
   testing:
     runs-on: ubuntu-latest
@@ -48,7 +56,9 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run tests
-        run: python test_ml_model.py   # replace with your test script
+        run: pytest
