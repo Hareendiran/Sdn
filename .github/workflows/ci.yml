@@ -20,12 +20,15 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r Sdn/requirements.txt
 
   # ---------- INTEGRATION ----------
   integration:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Sdn   # run commands inside repo folder
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -45,6 +48,9 @@ jobs:
   testing:
     needs: integration
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Sdn   # run commands inside repo folder
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
