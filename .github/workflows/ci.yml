@@ -33,7 +33,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run ML Model
-        run: python file1.py   # replace with your actual script
+        run: python ml.model.py   # replace with your actual script
 
   testing:
     runs-on: ubuntu-latest
@@ -51,4 +51,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: python file2.py   # replace with your test script
+        run: python test_ml_model.py   # replace with your test script
