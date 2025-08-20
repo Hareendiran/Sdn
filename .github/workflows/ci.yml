@@ -1,13 +1,8 @@
 name: Build, Integration, and Testing Demo
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
-  # ---------- BUILD ----------
   build:
     runs-on: ubuntu-latest
     steps:
@@ -17,18 +12,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.9'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-  # ---------- INTEGRATION ----------
   integration:
-    needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Sdn   # run commands inside repo folder
+    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,21 +27,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.9'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Run ML Model
-        run: python ml_model.py
+        run: python file1.py   # replace with your actual script
 
-  # ---------- TESTING ----------
   testing:
-    needs: integration
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Sdn   # run commands inside repo folder
+    needs: integration
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -58,10 +45,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.9'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Tests
-        run: pytest -v
+      - name: Run tests
+        run: python file2.py   # replace with your test script
