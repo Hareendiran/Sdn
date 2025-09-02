@@ -40,8 +40,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run ML Model
-        run: python Sdn/ml.model.py
+      - name: Run ML Model Script
+        # Corrected the file path below
+        run: python ml.model.py
 
   testing:
     runs-on: ubuntu-latest
