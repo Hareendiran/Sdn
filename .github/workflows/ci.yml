@@ -41,8 +41,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run ML Model Script
-        # Corrected the file path below
-        run: python ml.model.py
+        # Corrected the filename below to use an underscore
+        run: python ml_model.py
 
   testing:
     runs-on: ubuntu-latest
